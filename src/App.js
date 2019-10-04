@@ -7,6 +7,7 @@ export default class App extends Component {
 
     this.state = { // 初期値
       count: 0,
+      index: 0,
       label0: "0",
       label1: "*",
       label2: "*"
@@ -19,6 +20,7 @@ export default class App extends Component {
     var state = this.state;
 
     state['count'] = count;
+    state['index'] = l_index;
 
     for(var i=0; i<3; i++){
       if(i === l_index){
@@ -38,20 +40,31 @@ export default class App extends Component {
     }, 1000);
   }
 
+  setCSS(div_index, state_index){
+    if(div_index === state_index){
+      return {
+        background: "#808000"
+      };
+    }
+    return {
+      background: "#008000"
+    };
+  }
+
   render(){
     return (
       <div className="App">
-        <div className = "App-div-timer" id="app-div-timer">
-          <span class="App-div-text" id="app-div-timer-text">{this.state.count}</span>
+        <div className = "App-div-timer">
+          <span class="App-div-text">{this.state.count}</span>
         </div>
-        <div className = "App-div-main" id = "app-div-main-0">
-          <span class = "App-div-text" id = "app-div-text-0">{this.state.label0}</span>
+        <div className = "App-div-main" style = {this.setCSS(0, this.state.index)}>
+          <span class = "App-div-text">{this.state.label0}</span>
         </div>
-        <div className = "App-div-main" id = "app-div-main-1" >
-          <span class = "App-div-text" id = "app-div-text-1">{this.state.label1}</span>
+        <div className = "App-div-main" style = {this.setCSS(1, this.state.index)} >
+          <span class = "App-div-text">{this.state.label1}</span>
         </div>
-        <div className = "App-div-main" id = "app-div-main-2" >
-          < span class = "App-div-text" id = "app-div-text-2">{this.state.label2}</span>
+        <div className = "App-div-main" style = {this.setCSS(2, this.state.index)}>
+          < span class = "App-div-text">{this.state.label2}</span>
         </div>
       </div>
     );
